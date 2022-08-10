@@ -3,12 +3,26 @@ const morgan = require('morgan');
 const cors = require('cors');
 const { videoToken } = require('./tokens');
 require('dotenv').config();
-const PORT=process.env.PORT_BACKEND;
+const PORT=process.env.PORT||5000;
 const app = express();
+const path=require('path');
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(morgan('dev'));
 app.use(cors());
+
+__dirname=path.resolve();
+if(process.env.NODE_ENV==='production')
+{
+  app.use(express.static(path.join(__dirname,'/build')));
+  app.get('*',(req,res)=>{
+    res.sendFile(path.resolve(__dirname,"build","index.html"));
+  })
+}else{
+app.get('/',(req,res)=>{
+  res.send("API is running");
+})
+}
 
 const sendTokenResponse = (token, res) => {
   res.set('Content-Type', 'application/json');
