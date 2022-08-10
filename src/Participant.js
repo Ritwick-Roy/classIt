@@ -4,6 +4,7 @@ const Participant = ({ participant }) => {
   const [videoTracks, setVideoTracks] = useState([]);
   const [audioTracks, setAudioTracks] = useState([]);
   const [muted, setMuted] = useState(true);
+  const [pause, setPause] = useState(true);
 
   const videoRef = useRef();
   const audioRef = useRef();
@@ -51,7 +52,7 @@ const Participant = ({ participant }) => {
         videoTrack.detach();
       };
     }
-  }, [videoTracks]);
+  }, [videoTracks,pause]);
 
   useEffect(() => {
     const audioTrack = audioTracks[0];
@@ -61,15 +62,17 @@ const Participant = ({ participant }) => {
         audioTrack.detach();
       };
     }
-  }, [audioTracks]);
+  }, [audioTracks,muted]);
 
   return (
     <div className="participant">
-      <h3>{participant.identity}</h3>
-      <video ref={videoRef} autoPlay={true} />
+      <h3>Username: {participant.identity}</h3>
+      {pause && <video ref={videoRef} autoPlay={true} />}
+      {!pause && <button className="pause-btn" onClick={()=>{setPause(!pause)}}></button>}
       <audio ref={audioRef} autoPlay={true} muted={muted} />
-      <button onClick={()=>{setMuted(!muted)}}>mute</button>
-      {muted && <p style={{color:"white"}}>muted</p> }
+      <button className="mute-btn" onClick={()=>{setMuted(!muted)}}>Mute</button>
+      <button className="pause-btn" onClick={()=>{setPause(!pause)}}>Pause</button>
+      {muted && <p style={{color:"white"}}>Muted</p> }
     </div>
   );
 };

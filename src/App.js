@@ -15,7 +15,7 @@ const App = () => {
         <p>
           Made with{' '}
           <span role="img" aria-label="React">
-            ⚛️
+          ❤️
           </span>{' '}
           by <a href="https://github.com/ritwick-roy">Ritwick</a>
         </p>

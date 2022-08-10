@@ -15,7 +15,7 @@ body {
 }
 
 header {
-  background: #f0293e;
+  background: #29f04a;
   color: #fff;
   text-align: center;
   flex-grow: 0;
@@ -78,9 +78,11 @@ button {
   border-radius: 6px;
   border: 1px solid transparent;
 }
+
 button:hover {
   filter: brightness(150%);
 }
+
 
 .room {
   position: relative;
@@ -90,6 +92,7 @@ button:hover {
   top: 0;
   right: 20px;
 }
+
 .room > h3 {
   text-align: center;
   font-weight: 300;
@@ -121,12 +124,15 @@ button:hover {
   padding-bottom: 0.5em;
   color: #fff;
 }
-.participant button {
-  margin: 0;
-  position: absolute;
-  top: 50%;
-  -ms-transform: translateY(-50%);
-  transform: translateY(-50%);
+
+.mute-btn {
+  color:#ef2a2a;
+  margin:50px 0;
+}
+
+.pause-btn {
+  color:#29f04a;
+  margin:100px 0;
 }
 
 video {
